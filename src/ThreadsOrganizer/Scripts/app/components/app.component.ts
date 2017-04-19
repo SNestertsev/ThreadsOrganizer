@@ -1,11 +1,11 @@
 ﻿import { Component, NgZone } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { AuthService } from "./auth.service";
+import { AuthService } from "../services/auth.service";
 
 @Component({
     selector: "app",
-    templateUrl: "./app/app.component.html"
+    templateUrl: "./app/components/app.component.html"
 })
 export class AppComponent {
     title = "Threads Organizer";

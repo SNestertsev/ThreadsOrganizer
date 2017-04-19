@@ -1,0 +1,25 @@
+﻿<h1 class="header">Threads Organizer</h1>
+<div *ngIf="!authService.isLoggedIn()">
+    <h2>
+        Web-site where you can manage your collection of threads, organize them in lists and effectively search for required color.
+    </h2>
+    <p>Please, authorize yourself before doing anything.</p>
+</div>
+<div *ngIf="authService.isLoggedIn()">
+    <h2 *ngIf="hasLists === false">
+        Press 'Add New' command in the top menu to create new list of threads.
+    </h2>
+
+    <h2 *ngIf="hasLists">
+        Your lists
+    </h2>
+
+    <ul *ngIf="hasLists" class="lists">
+        <li *ngFor="let list of lists"
+            [class.selected]="list === selectedList"
+            (click)="onSelect(list)">
+            <div class="title">{{list.Title}}</div>
+            <div class="description">{{list.Description}}</div>
+        </li>
+    </ul>
+</div>

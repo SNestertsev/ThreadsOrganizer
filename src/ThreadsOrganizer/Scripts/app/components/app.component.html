@@ -11,6 +11,7 @@
             <a class="navbar-brand" [routerLink]="['']">
                 <img alt="logo" src="/img/logo.svg" />
             </a>
+            <p class="navbar-text visible-xs-inline-block"><b>Threads Organizer</b></p>
         </div>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
@@ -22,10 +23,13 @@
                 <li [class.active]="isActive(['about'])">
                     <a class="about" [routerLink]="['about']">About</a>
                 </li>
+                <li [class.active]="isActive(['palettes'])">
+                    <a class="palette" [routerLink]="['palettes']">Palettes</a>
+                </li>
 
                 <!-- Navigation commands for authenticated users -->
-                <li *ngIf="authService.isLoggedIn()" [class.active]="isActive(['item/edit', 0])">
-                    <a class="add" [routerLink]="['item/edit', 0]">Add New</a>
+                <li *ngIf="authService.isLoggedIn()" [class.active]="isActive(['thread-list/edit', 0])">
+                    <a class="add" [routerLink]="['thread-list/edit', 0]">Add New List</a>
                 </li>
 
                 <!-- Account-related commands -->
@@ -42,7 +46,6 @@
         </div>
     </div>
 </nav>
-<h1 class="header">{{title}}</h1>
 <div class="main-container">
     <router-outlet></router-outlet>
 </div>

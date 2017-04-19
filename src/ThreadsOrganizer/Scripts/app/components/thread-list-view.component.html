@@ -1,0 +1,31 @@
+﻿<h1 class="header">Threads Organizer</h1>
+<div *ngIf="list">
+    <h2>
+        <a href="#" (click)="onBack()">&laquo; Back to Home</a>
+    </h2>
+    <div class="list-container">
+        <ul class="nav nav-tabs">
+            <li *ngIf="authService.isLoggedIn()" role="presentation">
+                <a href="javascript:void(0)" (click)="onListDetailEdit(list)">Edit</a>
+            </li>
+            <li role="presentation" class="active">
+                <a href="javascript:void(0)">View</a>
+            </li>
+        </ul>
+        <div class="panel panel-default">
+            <div class="panel-header">
+                <h3>{{list.Title}}</h3>
+                <p>{{list.Description}}</p>
+            </div>
+            <div class="panel-body">
+                <ul class="thread-list-items">
+                    <li *ngFor="let item of items">
+                        <div class="thread-color" style="background-color:{{item.Color}}"></div>
+                        <div class="title">{{item.Name}}</div>
+                        <div class="description">{{item.Description}}</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

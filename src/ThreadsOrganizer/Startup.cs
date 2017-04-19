@@ -12,12 +12,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.IdentityModel.Tokens;
 
-using ThreadsOrganizer.Data;
-using ThreadsOrganizer.Data.Users;
+using AutoMapper;
 using System.Threading;
 using OpenIddict.Core;
 using OpenIddict.Models;
 using CryptoHelper;
+
+using ThreadsOrganizer.Data;
+using ThreadsOrganizer.Data.Items;
+using ThreadsOrganizer.Data.Lists;
+using ThreadsOrganizer.Data.Users;
+using ThreadsOrganizer.ViewModels;
 
 namespace ThreadsOrganizer
 {
@@ -177,12 +182,16 @@ namespace ThreadsOrganizer
 
             app.UseMvc();
 
-            // AutoMapper binding configuration
-            //AutoMapper.Bind<Item, ItemViewModel>();
-
-            // Seed the database with the sample applications.
-            // Note: in a real world application, this step should be part of a setup script.
-            //InitializeAsync(app.ApplicationServices, CancellationToken.None).GetAwaiter().GetResult();
+            // AutoMapper configuration
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Palette, PaletteViewModel>();
+                cfg.CreateMap<PaletteItem, PaletteItemViewModel>();
+                cfg.CreateMap<ThreadList, ThreadListViewModel>();
+                cfg.CreateMap<ThreadListViewModel, ThreadList>();
+                cfg.CreateMap<Item, ItemViewModel>();
+                cfg.CreateMap<ItemViewModel, Item>();
+            });
 
             // Seed the Database (if needed)
             try
@@ -195,33 +204,5 @@ namespace ThreadsOrganizer
                 throw new Exception(e.ToString());
             }
         }
-
-        /*private async Task InitializeAsync(IServiceProvider services, CancellationToken cancellationToken)
-        {
-            // Create a new service scope to ensure the database context is correctly disposed when this methods returns.
-            using (var scope = services.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                await context.Database.EnsureCreatedAsync();
-
-                var manager = scope.ServiceProvider.GetRequiredService<OpenIddictApplicationManager<OpenIddictApplication>>();
-
-                if (await manager.FindByClientIdAsync(Configuration["Authentication:OpenIddict:ClientId"], cancellationToken) == null)
-                {
-                    var application = new OpenIddictApplication
-                    {
-                        Id = Configuration["Authentication:OpenIddict:ApplicationId"],
-                        DisplayName = Configuration["Authentication:OpenIddict:DisplayName"],
-                        RedirectUri = Configuration["Authentication:OpenIddict:TokenEndPoint"],
-                        LogoutRedirectUri = "/",
-                        ClientId = Configuration["Authentication:OpenIddict:ClientId"],
-                        ClientSecret = Crypto.HashPassword(Configuration["Authentication:OpenIddict:ClientSecret"]),
-                        Type = OpenIddictConstants.ClientTypes.Public
-                    };
-
-                    await manager.CreateAsync(application, cancellationToken);
-                }
-            }
-        }*/
     }
 }

@@ -6,25 +6,24 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 
 import "rxjs/Rx";
+import { Ng2SimplePageScrollModule } from 'ng2-simple-page-scroll/ng2-simple-page-scroll';
 
-import { AppComponent } from "./app.component";
+import { AppComponent } from "./components/app.component";
 import { AppRouting } from "./app.routing";
 import { AuthHttp } from "./auth.http";
-import { AuthService } from "./auth.service";
-import { HomeComponent } from "./home.component";
-import { LoginComponent } from "./login.component";
-import { PageNotFoundComponent } from "./page-not-found.component";
-import { UserEditComponent } from "./user-edit.component";
+import { AuthService } from "./services/auth.service";
+import { PaletteService } from "./services/palette.service";
+import { ThreadListService } from "./services/thread-list.service";
+import { HomeComponent } from "./components/home.component";
+import { AboutComponent } from "./components/about.component";
+import { LoginComponent } from "./components/login.component";
+import { PageNotFoundComponent } from "./components/page-not-found.component";
+import { PaletteViewComponent } from "./components/palette-view.component";
+import { ThreadListViewComponent } from "./components/thread-list-view.component";
+import { ThreadListEditComponent } from "./components/thread-list-edit.component";
+import { UserEditComponent } from "./components/user-edit.component";
 
 @NgModule({
-    // directives, components and pipes
-    declarations: [
-        AppComponent,
-        HomeComponent,
-        LoginComponent,
-        PageNotFoundComponent,
-        UserEditComponent
-    ],
     // modules
     imports: [
         AppRouting,
@@ -33,11 +32,26 @@ import { UserEditComponent } from "./user-edit.component";
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
+        Ng2SimplePageScrollModule.forRoot()
+    ],
+    // directives, components and pipes
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        AboutComponent,
+        LoginComponent,
+        PageNotFoundComponent,
+        PaletteViewComponent,
+        ThreadListViewComponent,
+        ThreadListEditComponent,
+        UserEditComponent
     ],
     // providers
     providers: [
         AuthHttp,
-        AuthService
+        AuthService,
+        PaletteService,
+        ThreadListService
     ],
     bootstrap: [
         AppComponent

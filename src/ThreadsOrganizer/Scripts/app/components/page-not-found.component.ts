@@ -2,7 +2,7 @@
 
 @Component({
     selector: "page-not-found",
-    templateUrl: "./app/page-not-found.component.html"
+    templateUrl: "./app/components/page-not-found.component.html"
 })
 export class PageNotFoundComponent {
     title = "Page not found";

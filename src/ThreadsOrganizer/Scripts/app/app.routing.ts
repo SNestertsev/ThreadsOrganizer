@@ -1,10 +1,14 @@
 ﻿import { ModuleWithProviders } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
-import { HomeComponent } from "./home.component";
-import { LoginComponent } from "./login.component";
-import { PageNotFoundComponent } from "./page-not-found.component";
-import { UserEditComponent } from "./user-edit.component";
+import { HomeComponent } from "./components/home.component";
+import { AboutComponent } from "./components/about.component";
+import { LoginComponent } from "./components/login.component";
+import { PageNotFoundComponent } from "./components/page-not-found.component";
+import { PaletteViewComponent } from "./components/palette-view.component";
+import { ThreadListViewComponent } from "./components/thread-list-view.component";
+import { ThreadListEditComponent } from "./components/thread-list-edit.component";
+import { UserEditComponent } from "./components/user-edit.component";
 
 const appRoutes: Routes = [
     {
@@ -14,6 +18,10 @@ const appRoutes: Routes = [
     {
         path: "home",
         redirectTo: ""
+    },
+    {
+        path: "about",
+        component: AboutComponent
     },
     {
         path: "login",
@@ -26,6 +34,18 @@ const appRoutes: Routes = [
     {
         path: "account",
         component: UserEditComponent
+    },
+    {
+        path: "palettes",
+        component: PaletteViewComponent
+    },
+    {
+        path: "thread-list/view/:id",
+        component: ThreadListViewComponent
+    },
+    {
+        path: "thread-list/edit/:id",
+        component: ThreadListEditComponent
     },
     {
         path: '**',

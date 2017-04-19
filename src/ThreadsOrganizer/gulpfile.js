@@ -24,6 +24,7 @@ var srcPaths = {
         'node_modules/systemjs/dist/system.src.js',
         'node_modules/typescript/lib/typescript.js',
         'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js',
+        'node_modules/ng2-simple-page-scroll/bundles/ng2-simple-page-scroll.umd.min.js',
         'node_modules/moment/moment.js'
     ],
     js_angular: [
@@ -43,7 +44,7 @@ var destPaths = {
     css: 'wwwroot/css/',
     js: 'wwwroot/js/',
     js_angular: 'wwwroot/js/@angular/',
-    js_rxjs: 'wwwroot/js/rxjs/'
+    js_rxjs: 'wwwroot/js/rxjs/',
 };
 
 // Compile, minify and create sourcemaps
@@ -98,7 +99,8 @@ gulp.task('watch', function () {
     gulp.watch([
         srcPaths.app,
         srcPaths.js,
-        srcPaths.less],
+        srcPaths.less,
+        srcPaths.templates],
         ['app', 'js', 'less']);
 });
 

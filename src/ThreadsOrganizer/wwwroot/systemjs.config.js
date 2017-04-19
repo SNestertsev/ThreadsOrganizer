@@ -4,6 +4,7 @@
         'app': 'app',               // our app is within the app folder
         '@angular': 'js/@angular',  // angular2 packages
         'rxjs': 'js/rxjs',          // Rxjs package
+        'ng2-simple-page-scroll/ng2-simple-page-scroll': 'js/ng2-simple-page-scroll.umd.min.js',
     };
 
     // packages tells the System loader how to load when no filename and/or no extension

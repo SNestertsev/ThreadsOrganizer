@@ -1,0 +1,31 @@
+﻿<div *ngIf="palettes" class="panel panel-default">
+    <div class="panel-heading">
+        <div class="col-xs-6 col-md-6 transparent-border">
+            <select class="form-control" [ngModel]="currentPalette" (ngModelChange)="onChangePalette($event)" name="selPalette" id="selPalette">
+                <option [ngValue]="p" *ngFor="let p of palettes">{{p.Title}}</option>
+            </select>
+        </div>
+        <div class="input-group pull-right col-xs-6 col-md-6 transparent-border" [@threadFound]='threadFoundFlag'>
+            <input type="text" class="form-control" id="searchThread" placeholder="Thread ID or name" [(ngModel)]="searchString" (keyup.enter)="search()"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" (click)="search()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+            </span>
+        </div>
+    </div>
+    <div *ngIf="!paletteItems" class="panel-body">
+        Loading items...
+    </div>
+    <div *ngIf="paletteItems" class="panel-body">
+        {{paletteItems.length}} items of selected palette {{currentPalette.Title}}
+
+        <ul class="palette-items">
+            <li *ngFor="let item of paletteItems" [class.selected]="item === foundItem" >
+                <div class="palette-item" id="item{{item.Id}}">
+                    <div class="color" [ngStyle]="{'background': item.Color}"></div>
+                    <div class="title">{{item.Name + (item.Description ? " - " + item.Description : "")}}</div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</div>

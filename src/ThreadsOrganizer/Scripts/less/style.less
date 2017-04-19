@@ -2,6 +2,10 @@
 @color-most-viewed: #4d6552;
 @color-random: #703535;
 
+@smartphones: ~"only screen and (max-width: 767px)";
+@tablets: ~"only screen and (min-width: 481px)";
+@computers: ~"only screen and (min-width: 1024px)";
+
 @media (min-width: 768px) {
     .nav.navbar-nav {
         float: none;
@@ -53,80 +57,77 @@ h2 {
     font-style: italic;
     color: #666666;
 }
-// item-list component(s) styling
-item-list {
-    border: 0;
-    margin: 0;
-    padding: 0;
-    vertical-align: top;
-    display: block;
+// lists component(s) styling
+ul.lists {
+    list-style-type: none;
+    padding: 15px;
 
-    &.latest {
-        background-color: #f6f6f6;
+    li {
+        cursor: pointer;
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 1px solid #c7c7c7;
 
-        h3 {
-            background-color: @color-latest;
-            background-image: url(/img/latest-icon.png);
+        &:first-child {
+            margin-top: 0;
+            padding-top: 0;
+            border-top-width: 0;
+        }
+
+        .title {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .description {
+            margin-top: 3px;
+            font-size: 15px;
+            line-height: 1.5em;
+            height: (15*1.5*2);
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
     }
+}
 
-    &.most-viewed {
-        background-color: #f0f0f0;
+ul.thread-list-items {
+    list-style-type: none;
+    padding: 15px;
 
-        h3 {
-            background-color: @color-most-viewed;
-            background-image: url(/img/most-viewed-icon.png);
+    li {
+        cursor: pointer;
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 1px solid #c7c7c7;
+
+        &:first-child {
+            margin-top: 0;
+            padding-top: 0;
+            border-top-width: 0;
         }
-    }
 
-    &.random {
-        background-color: #e9e9e9;
-
-        h3 {
-            background-color: @color-random;
-            background-image: url(/img/random-icon.png);
+        .thread-color {
+            width:20px;
+            height:20px;
+            border:1px solid #000;
         }
-    }
 
-    h3 {
-        color: #fefefe;
-        margin: 0;
-        padding: 10px 15px;
-        background-repeat: no-repeat;
-        background-position: 97% center;
-    }
+        .title {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
 
-    ul {
-        list-style-type: none;
-        padding: 15px;
-
-        li {
-            cursor: pointer;
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid #c7c7c7;
-
-            &:first-child {
-                margin-top: 0;
-                padding-top: 0;
-                border-top-width: 0;
-            }
-
-            .title {
-                font-size: 1.3em;
-                font-weight: bold;
-            }
-
-            .description {
-                margin-top: 3px;
-                font-size: 15px;
-                line-height: 1.5em;
-                height: (15*1.5*2);
-                overflow: hidden;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-            }
+        .description {
+            margin-top: 3px;
+            font-size: 15px;
+            line-height: 1.5em;
+            height: (15*1.5*2);
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
     }
 }
@@ -134,7 +135,7 @@ item-list {
 // Item Detail View & Edit components styling
 @color-panel: #f9f9f9;
 
-.item-container {
+.list-container {
     margin: 0 20px;
 
     .nav.nav-tabs {
@@ -228,6 +229,10 @@ form.item-detail-edit {
     max-width: 330px;
     padding: 15px;
 
+    .form-login-heading {
+        margin: 46px 0 0 0;
+    }
+
     .form-login {
         margin: 0 0 10px 20px;
 
@@ -271,4 +276,60 @@ form.item-detail-edit {
     cursor: pointer;
     font-size: 0.8em;
     margin: 10px 0;
+}
+
+@color-selected_thread: #eae5e5;
+
+palette-view
+{
+    .panel-heading {
+        margin: 44px 0 0 0;
+        position: fixed;
+        width: 100%;
+    }
+
+    .transparent-border {
+        border-color: transparent;
+        border-width: 1px;
+        border-style: solid;
+    }
+
+    .panel-body {
+        margin: 105px 0 0 0;
+        .selected {
+            background-color: lightgray;
+        }
+
+        ul {
+            list-style-type: none;
+            @media @tablets { 
+                column-count: 2;
+                column-fill: auto;
+            }
+            @media @computers {
+                column-count: 3;
+                column-fill: auto;
+            }
+            
+            li {
+                break-inside: avoid-column;
+                .palette-item {
+                    border-spacing: 10px;
+                    display: table;
+                    text-align: center;
+                }
+
+                .color {
+                    width: 30px;
+                    height: 30px;
+                    display: table-cell;
+                }
+
+                .title {
+                    display: table-cell;
+                    vertical-align: middle;
+                }
+           }
+        }
+    }
 }

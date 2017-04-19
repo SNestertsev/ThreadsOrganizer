@@ -1,0 +1,42 @@
+﻿<h1 class="header">Threads Organizer</h1>
+<div *ngIf="list">
+    <h2>
+        <a href="#" (click)="onBack()">
+            &laquo; Back to Home
+        </a>
+    </h2>
+    <div class="list-container">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active">
+                <a href="javascript:void(0)">Edit</a>
+            </li>
+            <li role="presentation" *ngIf="list.Id != 0">
+                <a href="javascript:void(0)" (click)="onListDetailView(list)">View</a>
+            </li>
+        </ul>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="list-detail-edit" #thisForm="ngForm">
+                    <div class="form-group">
+                        <label for="input-title">Title</label>
+                        <input id="input-title" name="input-title" type="text" class="form-control" [(ngModel)]="list.Title" placeholder="Insert the title..." required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="input-description">Description</label>
+                        <textarea id="input-description" name="input-description" class="form-control" [(ngModel)]="list.Description" placeholder="Insert a suitable description..." required>
+                        </textarea>
+                    </div>
+                    <div *ngIf="list.Id == 0" class="commands insert">
+                        <input type="button" class="btn btn-primary" value="Save" (click)="onInsert(list)" />
+                        <input type="button" class="btn btn-default" value="Cancel" (click)="onBack()" />
+                    </div>
+                    <div *ngIf="list.Id != 0" class="commands update">
+                        <input type="button" class="btn btn-primary" value="Update" (click)="onUpdate(list)" />
+                        <input type="button" class="btn btn-danger" value="Delete" (click)="onDelete(list)" />
+                        <input type="button" class="btn btn-default" value="Cancel" (click)="onListDetailView(list)" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
